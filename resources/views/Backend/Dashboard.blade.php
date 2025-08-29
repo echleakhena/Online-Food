@@ -1,7 +1,5 @@
 @extends('Backend.Layout.App')
 @section('content')
-
- <div class="main-content">
         <!-- Header -->
         <div class="header">
             <div class="search-bar">
@@ -150,5 +148,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 @endsection

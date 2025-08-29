@@ -646,13 +646,14 @@
     </style>
 </head>
 <body>
+   
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <i class="fas fa-utensils"></i>
             <h1>E-Food</h1>
         </div>
-        <a href="{{ url('/Admin') }}" class="menu-item active">
+        <a href="{{ url('admin/Admin') }}" class="menu-item active">
             <i class="fas fa-home"></i>
             <span>Dashboard</span>
         </a>
@@ -676,15 +677,12 @@
             <i class="fas fa-chart-bar"></i>
             <span>Report</span>
         </a>
-        <a href="{{ route('setting.list') }}" class="menu-item">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span>
-        </a>
     </div>
 
-    <!-- Main Content -->
-    @yield('content')
-
+     <!-- Main Content -->
+    <div class="main-content">
+        @yield('content')
+    </div>
 
 </body>
 </html>

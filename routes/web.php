@@ -1,4 +1,4 @@
-<?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
@@ -19,18 +19,18 @@ Route::get('/', function(){
 
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {                                                                                                                                                                                                                                                                             
     Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
 });
 
 
 Route::prefix('user')->group(function () {
     Route::get('/List', [UserController::class, 'list'])->name('user.list');
-});
+});                                                                                                                                                                                 
 
 
 Route::prefix('customer')->group(function () {
-    Route::get('/List', [CustomerController::class, 'list'])->name('customer.list');
+    Route::get('/List', [CustomerController::class, 'list'])->name('customer.list');                                            
 });
 
 
