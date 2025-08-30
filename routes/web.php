@@ -18,10 +18,9 @@ Route::get('/', function(){
 });
 
 
+                                                                                                                                                                                                                                                                          
+Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
 
-Route::prefix('admin')->group(function () {                                                                                                                                                                                                                                                                             
-    Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
-});
 
 
 Route::prefix('user')->group(function () {

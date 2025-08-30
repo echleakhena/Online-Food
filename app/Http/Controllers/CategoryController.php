@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function Category(){
+    public function list(){
+
         return view('Backend.E-Food.Category.List');
     }
 }

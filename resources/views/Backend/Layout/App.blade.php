@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TastyBites - Food Delivery Dashboard</title>
+    <title>FoodExpress Dashbaord</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,15 +14,15 @@
         }
 
         :root {
-            --primary: #ff6b35;
-            --primary-light: #ff9e68;
-            --primary-dark: #e85a00;
-            --secondary: #2ec4b6;
-            --dark: #1f1f1f;
-            --dark-light: #2d2d2d;
+            --primary: #8b054d;
+            --primary-light: #07075a;
+            --primary-dark: #100356;
+            --secondary: #0b0558;
+            --dark: #02074b;
+            --dark-light: #03074b;
             --light: #f8f9fa;
             --light-gray: #e9ecef;
-            --success: #4caf50;
+            --success: #8b054d;
             --warning: #ff9800;
             --danger: #f44336;
             --gray: #8a8a8a;
@@ -651,38 +651,47 @@
     <div class="sidebar">
         <div class="logo">
             <i class="fas fa-utensils"></i>
-            <h1>E-Food</h1>
+            <h1>FoodExpress</h1>
         </div>
-        <a href="{{ url('admin/Admin') }}" class="menu-item active">
+        <a href="{{ url('/Admin') }}" class="menu-item active">
             <i class="fas fa-home"></i>
             <span>Dashboard</span>
         </a>
+          <a href="{{ route('category.list') }}" class="menu-item">
+            <i class="fas fa-layer-group"></i>
+            <span>Category</span>
+        </a>
         <a href="{{ route('food.list') }}" class="menu-item">
-            <i class="fas fa-utensils"></i>
-            <span>E-Food</span>
+            <i class="fas fa-hamburger"></i>
+            <span>Food</span>
         </a>
         <a href="{{ route('order.list') }}" class="menu-item">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-clipboard-list"></i>
             <span>Orders</span>
         </a>
         <a href="{{ route('customer.list') }}" class="menu-item">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-user-friends"></i>
             <span>Customers</span>
         </a>
         <a href="{{ route('payment.list') }}" class="menu-item">
-            <i class="fas fa-credit-card"></i>
+            <i class="fas fa-money-bill-wave"></i>
             <span>Payment</span>
         </a>
         <a href="{{ route('report.list') }}" class="menu-item">
-            <i class="fas fa-chart-bar"></i>
+            <i class="fas fa-chart-pie"></i>
             <span>Report</span>
+        </a>
+          <a href="{{ route('user.list') }}" class="menu-item">
+            <i class="fas fa-user-cog"></i>
+            <span>User</span>
+        </a>
+          <a href="" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
         </a>
     </div>
 
      <!-- Main Content -->
-    <div class="main-content">
-        @yield('content')
-    </div>
-
+   @yield('content')
 </body>
 </html>
