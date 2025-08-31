@@ -272,7 +272,8 @@
         }
 
         .hero-image img {
-            max-width: 100%;
+            max-width: 850px;
+            max-height: 850px;
             border-radius: 20px;
             box-shadow: var(--shadow);
             animation: float 3s ease-in-out infinite;
@@ -722,7 +723,7 @@
                 
                 <div class="nav-buttons">
                     <button class="btn btn-outline">Login</button>
-                    <button class="btn btn-primary">Sign Up</button>
+                   <a href="{{ route('register') }}"> <button class="btn btn-primary" >Sign Up</button></a>
                     <div class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">3</span>

@@ -17,7 +17,7 @@
                 <span class="notification-badge">3</span>
             </div>
             <div class="user-profile">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Profile">
+                <img src="" alt="User Profile">
                 <div class="user-info">
                     <h4>Admin User</h4>
                     <p>System Administrator</p>
@@ -36,22 +36,14 @@
                     <option value="all">All Roles</option>
                     <option value="admin">Administrator</option>
                     <option value="manager">Manager</option>
-                    <option value="staff">Staff</option>
-                    <option value="customer">Customer</option>
-                </select>
-                <select class="filter-select">
-                    <option value="all">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="pending">Pending</option>
-                    <option value="suspended">Suspended</option>
-                </select>
+                    <option value="author">Author</option>
+                </select>               
                 <button class="filter-btn">
                     <i class="fas fa-filter"></i> Apply Filters
                 </button>
-                <button class="add-user-btn" id="addUserBtn">
+              <a href="{{ route('user.add') }}">  <button class="add-user-btn" id="addUserBtn">
                     <i class="fas fa-plus"></i> Add New User
-                </button>
+                </button></a>
             </div>
         </div>
     </div>
@@ -67,156 +59,67 @@
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="border-bottom: 2px solid var(--light-gray);">
+                        <th style="text-align: left; padding: 15px 10px;">UID</th>
                         <th style="text-align: left; padding: 15px 10px;">User</th>
                         <th style="text-align: left; padding: 15px 10px;">Email</th>
+                          <th style="text-align: left; padding: 15px 10px;">Phone</th>
                         <th style="text-align: left; padding: 15px 10px;">Role</th>
                         <th style="text-align: left; padding: 15px 10px;">Joined</th>
                         <th style="text-align: left; padding: 15px 10px;">Status</th>
                         <th style="text-align: center; padding: 15px 10px;">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+             <tbody>
+                @foreach($users as $user)
                     <tr style="border-bottom: 1px solid var(--light-gray);">
+                        <td style="padding: 15px 10px;">UID{{ $user->id ?? 'N/A' }}</td>
                         <td style="padding: 15px 10px;">
                             <div style="display: flex; align-items: center;">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                                <img src="{{ $user->image ? asset('User/'.$user->image) : 'https://randomuser.me/api/portraits/men/32.jpg' }}" 
+                                    alt="User" 
+                                    style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
                                 <div>
-                                    <div style="font-weight: 600;">Michael Chen</div>
-                                    <div style="font-size: 13px; color: var(--gray);">@michaelchen</div>
+                                    <div style="font-weight: 600;">{{ $user->username }}</div>
+                                    <div style="font-size: 13px; color: var(--gray);">{{ '@'.$user->username }}</div>
                                 </div>
                             </div>
                         </td>
-                        <td style="padding: 15px 10px;">michael.chen@example.com</td>
+                        <td style="padding: 15px 10px;">{{ $user->email ?? 'N/A' }}</td>
+                        <td style="padding: 15px 10px;">{{ $user->phone ?? 'N/A' }}</td>
                         <td style="padding: 15px 10px;">
-                            <span class="user-role admin">Administrator</span>
+                            <span class="user-role admin">{{ $user->role ?? 'User' }}</span>
                         </td>
-                        <td style="padding: 15px 10px;">15 Jan 2023</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-status active">Active</span>
+                        <td style="padding: 15px 10px;">{{ $user->created_at->format('d M Y') }}</td>
+                        <td style="confirmed: 15px 10px;">
+                            <span class="user-status {{ $user->status == 'active' ? 'active' : 'active' }}">
+                                {{ ucfirst($user->status ?? 'active') }}
+                            </span>
                         </td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
+                       <td style="padding: 15px 10px; text-align: center;">
+                    <div style="display: flex; justify-content: center; gap: 8px;">
+                    
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+
+
+                        <form action="{{ route('user.delete', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="margin: 0;">
+                            @csrf
+                            <button type="submit" class="action-btn delete-btn">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                       </td>
+
                     </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                                <div>
-                                    <div style="font-weight: 600;">Sarah Johnson</div>
-                                    <div style="font-size: 13px; color: var(--gray);">@sarahj</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">sarah.j@example.com</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-role manager">Manager</span>
-                        </td>
-                        <td style="padding: 15px 10px;">22 Feb 2023</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-status active">Active</span>
-                        </td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                                <div>
-                                    <div style="font-weight: 600;">Emma Rodriguez</div>
-                                    <div style="font-size: 13px; color: var(--gray);">@emmar</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">emma.r@example.com</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-role staff">Staff</span>
-                        </td>
-                        <td style="padding: 15px 10px;">5 Mar 2023</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-status inactive">Inactive</span>
-                        </td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                                <div>
-                                    <div style="font-weight: 600;">David Wilson</div>
-                                    <div style="font-size: 13px; color: var(--gray);">@davidw</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">david.w@example.com</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-role customer">Customer</span>
-                        </td>
-                        <td style="padding: 15px 10px;">9 Apr 2023</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-status active">Active</span>
-                        </td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                                <div>
-                                    <div style="font-weight: 600;">Jennifer Lee</div>
-                                    <div style="font-size: 13px; color: var(--gray);">@jenniferl</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">jennifer.l@example.com</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-role customer">Customer</span>
-                        </td>
-                        <td style="padding: 15px 10px;">8 May 2023</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="user-status pending">Pending</span>
-                        </td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn approve-btn"><i class="fas fa-check"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
+                @endforeach
+             </tbody>
+
             </table>
         </div>
         
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-            <div style="color: var(--gray); font-size: 14px;">
-                Showing 1 to 5 of 248 users
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="pagination-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="pagination-btn active">1</button>
-                <button class="pagination-btn">2</button>
-                <button class="pagination-btn">3</button>
-                <button class="pagination-btn">4</button>
-                <button class="pagination-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
+      
     </div>
 </div>
 

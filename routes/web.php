@@ -1,5 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <?php
-
+ <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AdminController,
@@ -16,20 +15,28 @@ use App\Http\Controllers\{
 Route::get('/', function(){
     return view('Frontend.index');
 });
-
-
                                                                                                                                                                                                                                                                           
 Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
+
+Route::get('/FormRegister',[CustomerController::class, 'rigister'])->name('register');
+Route::get('/AddCustomer', [CustomerController::class, 'add'])->name('customer.add');
+Route::post('/CustomerCreate',[CustomerController::class, 'create'])->name('customer.create');
 
 
 
 Route::prefix('user')->group(function () {
     Route::get('/List', [UserController::class, 'list'])->name('user.list');
+    Route::get('/Add',[UserController::class, 'add'])->name('user.add');
+    Route::post('/Create',[UserController::class, 'create'])->name('user.create');
+    Route::post('/Delete/{id}',[UserController::class, 'delete'])->name('user.delete');
+
 });                                                                                                                                                                                 
 
 
 Route::prefix('customer')->group(function () {
-    Route::get('/List', [CustomerController::class, 'list'])->name('customer.list');                                            
+    Route::get('/List', [CustomerController::class, 'list'])->name('customer.list'); 
+    Route::post('/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+                                    
 });
 
 

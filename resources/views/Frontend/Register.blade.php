@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #030b57 0%, #1a237e 100%);
+            border-bottom: none;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .logo {
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+        
+        .card-header h5 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+        
+        .card-header p {
+            position: relative;
+            z-index: 1;
+            font-size: 16px;
+            opacity: 0.9;
+            color: #fff;
+        }
+        
+        .card-body {
+            padding: 35px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #444;
+            font-size: 15px;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #030b57;
+            font-size: 18px;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            border: 2px solid #030b57;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #030b57;
+            box-shadow: 0 0 0 4px rgba(3, 11, 87, 0.2);
+            background: #fff;
+        }
+        
+        .form-control:focus + i {
+            color: #030b57;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .error {
+            color: #030b57;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #030b57;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+        
+        .toggle-password:hover {
+            color: #030b57;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #030b57 0%, #1a237e 100%);
+            border: none;
+            padding: 14px 28px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-radius: 10px;
+            font-size: 17px;
+            box-shadow: 0 4px 15px rgba(3, 11, 87, 0.3);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(3, 11, 87, 0.4);
+            background: linear-gradient(135deg, #030b57 0%, #1a237e 100%);
+            color: white;
+        }
+        
+        .btn-success:active {
+            transform: translateY(0);
+        }
+        
+        .btn-outline-secondary {
+            border: 2px solid #030b57;
+            color: #030b57;
+            transition: all 0.3s;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: #030b57;
+            color: white;
+            box-shadow: 0 4px 12px rgba(3, 11, 87, 0.3);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 16px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .login-link a {
+            color: #030b57;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .login-link a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #030b57;
+            transition: width 0.3s;
+        }
+        
+        .login-link a:hover::after {
+            width: 100%;
+        }
+        
+        /* Enhanced Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E8B57 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.5s ease-in-out;
+            border-left: 5px solid #2E8B57;
+        }
+        
+        .success-message i {
+            font-size: 24px;
+            margin-right: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .terms {
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+            margin-top: 25px;
+            line-height: 1.6;
+        }
+        
+        .terms a {
+            color: #030b57;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .terms a:hover {
+            text-decoration: underline;
+        }
+        
+        .password-strength {
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 8px;
+            background: #eee;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 3px;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        .password-strength-text {
+            font-size: 13px;
+            margin-top: 5px;
+            text-align: right;
+            color: #777;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+           100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 25px;
+            }
+            
+            .card-header {
+                padding: 25px 20px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .d-flex.justify-content-between .btn {
+                width: 100%;
+            }
+            
+            .card-header h5 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-8">
+                <div class="card shadow-lg border-0">
+                   <div class="card-header text-center py-4" style="background: linear-gradient(90deg, #030b57, #020a4a); color: #daa619;">
+                        <div class="logo mb-2">
+                            <i class="fas fa-utensils fa-2x" style="color: #daa619;"></i>
+                        </div>
+                        <h5 class="mb-1">FoodExpress Registration</h5>
+                        <p class="mb-0 mt-2">Join us for delicious food experiences</p>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <!-- Success Message (will be shown after redirect) -->
+                        @if(session('success'))
+                            <div class="success-message" style="display: block;">
+                                <i class="fas fa-check-circle"></i> 
+                                <span class="message-text">{{ session('success') }}</span>
+                            </div>
+                        @endif
+                        
+                        <form action="{{ route('customer.create') }}" method="POST" id="registrationForm">
+                            @csrf
+
+                            {{-- Name --}}
+                            <div class="mb-4">
+                                <label for="name" class="form-label"> Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user" style="color: #030b57;"></i>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="name" 
+                                        name="name" 
+                                        value="{{ old('name') }}" 
+                                        placeholder="Enter your name" 
+                                        required>
+                                </div>
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            {{-- Phone --}}
+                            <div class="mb-4">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-phone" style="color: #030b57;"></i>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="phone" 
+                                        name="phone" 
+                                        value="{{ old('phone') }}" 
+                                        placeholder="Enter phone number" 
+                                        required>
+                                </div>
+                                @error('phone')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            {{-- Password --}}
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-lock" style="color: #030b57;"></i>
+                                    </span>
+                                    <input 
+                                        type="password" 
+                                        class="form-control border-start-0" 
+                                        id="password" 
+                                        name="password" 
+                                        placeholder="Create a secure password (min. 4 characters)" 
+                                        required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fas fa-eye" style="color: #030b57;"></i>
+                                    </button>
+                                </div>
+                                @error('password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            
+                            {{-- Confirm Password --}}
+                            <div class="mb-4">
+                                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">
+                                        <i class="fas fa-lock" style="color: #030b57;"></i>
+                                    </span>
+                                    <input 
+                                        type="password" 
+                                        class="form-control border-start-0" 
+                                        id="password_confirmation" 
+                                        name="password_confirmation" 
+                                        placeholder="Confirm your password" 
+                                        required>
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                                        <i class="fas fa-eye" style="color: #030b57;"></i>
+                                    </button>
+                                </div>
+                                @error('password_confirmation')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            {{-- Buttons --}}
+                            <div class="d-flex justify-content-between mt-4 border-top pt-4">
+                                <a href="{{ url('/') }}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2" style="color: #030b57;"></i>Back to Homepage
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-user-plus me-2"></i>Register
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="login-link">
+                            Already have an account? <a href="#">Sign In</a>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            
+            // Password visibility toggling
+            const togglePassword = document.getElementById('togglePassword');
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('password_confirmation');
+            
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('fa-eye');
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            }
+            
+            if (toggleConfirmPassword) {
+                toggleConfirmPassword.addEventListener('click', function() {
+                    const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    confirmPasswordInput.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('fa-eye');
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            }
+            
+            // Form validation
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    
+                    // Basic validation
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('password_confirmation').value;
+                    
+                    if (password.length < 4) {
+                        alert('Password must be at least 4 characters long');
+                        isValid = false;
+                    }
+                    
+                    if (password !== confirmPassword) {
+                        alert('Passwords do not match');
+                        isValid = false;
+                    }
+                    
+                    if (!isValid) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
