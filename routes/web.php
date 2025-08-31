@@ -42,11 +42,19 @@ Route::prefix('customer')->group(function () {
 
 Route::prefix('category')->group(function () {
     Route::get('/List', [CategoryController::class, 'list'])->name('category.list');
+    Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 });
 
 
 Route::prefix('food')->group(function () {
     Route::get('/List', [FoodController::class, 'list'])->name('food.list');
+    Route::post('/store', [FoodController::class, 'store'])->name('food.store');
+    Route::get('/edit/{id}', [FoodController::class, 'edit'])->name('food.edit');
+    Route::post('/update/{id}', [FoodController::class, 'update'])->name('food.update');
+    Route::delete('/delete/{id}', [FoodController::class, 'destroy'])->name('food.delete');
 });
 
 

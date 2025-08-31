@@ -23,7 +23,7 @@ class UserController extends Controller
             'phone'    => 'required|string|max:20|unique:users,phone',   
             'password' => 'required|string|min:4|confirmed',
             'email'    => 'nullable|email|max:255|unique:users,email',  
-            'image'    => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'note'     => 'nullable|string',
             ]);
 
@@ -31,9 +31,14 @@ class UserController extends Controller
             $user->username = $request->username;
             $user->phone    = $request->phone;
             $user->email    = $request->email;
-            $user->image    = $request->image;
             $user->note     = $request->note;
             $user->password = Hash::make($request->password); 
+             if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = rand(1000, 9999) . '_' . $file->getClientOriginalExtension();
+            $file->move(public_path('User'), $filename);
+            $user->image = $filename;
+    }
             $user->save();
 
         return redirect()->route('user.list')->with('success', 'User added successfully');
