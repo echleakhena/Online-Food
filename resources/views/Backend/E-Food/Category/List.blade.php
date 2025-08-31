@@ -34,20 +34,71 @@
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <select class="filter-select">
                     <option value="all">All Categories</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="featured">Featured</option>
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
                 </select>
-                <button class="filter-btn">
-                    <i class="fas fa-filter"></i> Apply Filters
-                </button>
                 <button class="add-category-btn" id="addCategoryBtn">
                     <i class="fas fa-plus"></i> Add New Category
                 </button>
             </div>
         </div>
     </div>
+    <!-- Modal Create-->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="addCategoryForm">
+            <!-- Category Name -->
+            <div class="mb-3">
+                <label for="categoryName" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="categoryName" required>
+            </div>
 
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="categoryDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="categoryDescription" rows="3" required></textarea>
+            </div>
+
+            <!-- Status (Active/Inactive) -->
+            <div class="mb-3">
+                <label for="categoryStatus" class="form-label">Status</label>
+                <select class="form-select" id="categoryStatus" required>
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal for Viewing Category Details -->
+        <div class="modal fade" id="viewCategoryModal" tabindex="-1" aria-labelledby="viewCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewCategoryModalLabel">Category Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Name:</strong> <span id="viewCategoryName"></span></p>
+                <p><strong>Description:</strong> <span id="viewCategoryDescription"></span></p>
+                <p><strong>Status:</strong> <span id="viewCategoryStatus"></span></p>
+                <p><strong>Created At:</strong> <span id="viewCategoryCreatedAt"></span></p>
+            </div>
+            </div>
+        </div>
+        </div>
     <!-- Categories Table -->
     <div class="card">
         <div class="orders-header">
@@ -56,6 +107,7 @@
         </div>
         
         <div class="categories-table">
+            
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr style="border-bottom: 2px solid var(--light-gray);">
@@ -68,6 +120,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($categories as $category)
                     <tr style="border-bottom: 1px solid var(--light-gray);">
                         <td style="padding: 15px 10px;">
                             <div style="display: flex; align-items: center;">
@@ -75,137 +128,48 @@
                                     <i class="fas fa-utensils"></i>
                                 </div>
                                 <div>
-                                    <div style="font-weight: 600;">Main Course</div>
-                                    <div style="font-size: 13px; color: var(--gray);">#CAT-1001</div>
+                                    <div style="font-weight: 600;">{{ $category->name }}</div>
+                                    <div style="font-size: 13px; color: var(--gray);">#CAT-{{ $category->id }}</div>
                                 </div>
                             </div>
                         </td>
                         <td style="padding: 15px 10px;">24</td>
-                        <td style="padding: 15px 10px;">Hearty and satisfying dishes</td>
+                        <td style="padding: 15px 10px;">{{$category->description}}</td>
                         <td style="padding: 15px 10px;">
-                            <span class="category-status active">Active</span>
+                            <span class="category-status active">{{ ucfirst($category->status) }}</span>
                         </td>
-                        <td style="padding: 15px 10px;">12 Jan 2023</td>
+                        <td style="padding: 15px 10px;">{{ $category->created_at->format('d M Y') }}</td>
                         <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            <button 
+                                class="action-btn view-btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#viewCategoryModal"
+                                data-name="{{ $category->name }}"
+                                data-description="{{ $category->description }}"
+                                data-status="{{ ucfirst($category->status) }}"
+                                data-created="{{ $category->created_at->format('d M Y') }}"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <a href="{{ route('category.edit', $category->id) }}" class="action-btn edit-btn"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('category.delete', $category->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #2ec4b6, #6ee7d7); margin-right: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                                    <i class="fas fa-pizza-slice"></i>
-                                </div>
-                                <div>
-                                    <div style="font-weight: 600;">Appetizers</div>
-                                    <div style="font-size: 13px; color: var(--gray);">#CAT-1002</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">18</td>
-                        <td style="padding: 15px 10px;">Small dishes to start your meal</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="category-status active">Active</span>
-                        </td>
-                        <td style="padding: 15px 10px;">15 Feb 2023</td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #ff9f43, #ffbe76); margin-right: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                                    <i class="fas fa-ice-cream"></i>
-                                </div>
-                                <div>
-                                    <div style="font-weight: 600;">Desserts</div>
-                                    <div style="font-size: 13px; color: var(--gray);">#CAT-1003</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">15</td>
-                        <td style="padding: 15px 10px;">Sweet treats to finish your meal</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="category-status active">Active</span>
-                        </td>
-                        <td style="padding: 15px 10px;">22 Mar 2023</td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #54a0ff, #7ed6df); margin-right: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                                    <i class="fas fa-coffee"></i>
-                                </div>
-                                <div>
-                                    <div style="font-weight: 600;">Beverages</div>
-                                    <div style="font-size: 13px; color: var(--gray);">#CAT-1004</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">22</td>
-                        <td style="padding: 15px 10px;">Refreshing drinks and beverages</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="category-status active">Active</span>
-                        </td>
-                        <td style="padding: 15px 10px;">5 Apr 2023</td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--light-gray);">
-                        <td style="padding: 15px 10px;">
-                            <div style="display: flex; align-items: center;">
-                                <div style="width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #a29bfe, #dfe6e9); margin-right: 10px; display: flex; align-items: center; justify-content: center; color: white;">
-                                    <i class="fas fa-leaf"></i>
-                                </div>
-                                <div>
-                                    <div style="font-weight: 600;">Vegetarian</div>
-                                    <div style="font-size: 13px; color: var(--gray);">#CAT-1005</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td style="padding: 15px 10px;">14</td>
-                        <td style="padding: 15px 10px;">Plant-based dishes</td>
-                        <td style="padding: 15px 10px;">
-                            <span class="category-status inactive">Inactive</span>
-                        </td>
-                        <td style="padding: 15px 10px;">18 May 2023</td>
-                        <td style="padding: 15px 10px; text-align: center;">
-                            <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
-        
+
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
             <div style="color: var(--gray); font-size: 14px;">
-                Showing 1 to 5 of 12 categories
+                Showing {{ $categories->firstItem() }} to {{ $categories->lastItem() }} of {{ $categories->total() }} categories
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="pagination-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="pagination-btn active">1</button>
-                <button class="pagination-btn">2</button>
-                <button class="pagination-btn">3</button>
-                <button class="pagination-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <div>
+                {{ $categories->links('vendor.pagination.custom-category') }}
             </div>
         </div>
     </div>
@@ -399,39 +363,84 @@
         
         // Add category button
         const addCategoryBtn = document.getElementById('addCategoryBtn');
+        const addCategoryModal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+        const addCategoryForm = document.getElementById('addCategoryForm');
         if (addCategoryBtn) {
             addCategoryBtn.addEventListener('click', function() {
-                alert('Add category functionality would open a modal here.');
-                // In a real application, this would open a modal form
+                addCategoryModal.show();
             });
         }
-        
+
+        $(document).ready(function() {
+            // Handle form submission
+            $('#addCategoryForm').on('submit', function(e) {
+                e.preventDefault();  // Prevent the form from submitting normally
+
+                // Get form data
+                var formData = {
+                    categoryName: $('#categoryName').val(),
+                    categoryDescription: $('#categoryDescription').val(),
+                    categoryStatus: $('#categoryStatus').val(),
+                    _token: '{{ csrf_token() }}'  // CSRF Token for protection
+                };
+
+                // Send data via AJAX
+                $.ajax({
+                    url: '{{ route('category.store') }}',  // Route with prefix
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);  // Show success message
+                            $('#addCategoryModal').modal('hide');  // Hide the modal
+                            $('#addCategoryForm')[0].reset();  // Reset the form
+                        } else {
+                            alert(response.message);  // Show failure message
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Capture error message from server response
+                        var errorMessage = xhr.responseJSON ? xhr.responseJSON.message : 'An unexpected error occurred';
+                        console.error(errorMessage);  // Log the error message
+                        alert('An error occurred while adding the category: ' + errorMessage);
+                    }
+                });
+            });
+        });
+
         // Action buttons
-        const viewButtons = document.querySelectorAll('.view-btn');
-        viewButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const categoryName = this.closest('tr').querySelector('td:first-child div div:first-child').textContent;
-                alert(`View details for category: ${categoryName}`);
-            });
+        $('#viewCategoryModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            $('#viewCategoryName').text(button.data('name'));
+            $('#viewCategoryDescription').text(button.data('description'));
+            $('#viewCategoryStatus').text(button.data('status'));
+            $('#viewCategoryCreatedAt').text(button.data('created'));
         });
-        
-        const editButtons = document.querySelectorAll('.edit-btn');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const categoryName = this.closest('tr').querySelector('td:first-child div div:first-child').textContent;
-                alert(`Edit category: ${categoryName}`);
+
+        // Filter functionality
+        const filterSelect = document.querySelector('.filter-select');
+        if (filterSelect) {
+            filterSelect.addEventListener('change', function() {
+                const filterValue = this.value;
+                const rows = document.querySelectorAll('.categories-table tbody tr');
+                rows.forEach(row => {
+                    // Get the status text from the row (assumes status is in the 4th td)
+                    const statusCell = row.querySelector('td:nth-child(4) .category-status');
+                    if (!statusCell) return;
+                    const status = statusCell.textContent.trim().toLowerCase();
+
+                    if (filterValue === 'all') {
+                        row.style.display = '';
+                    } else if (filterValue === 'available' && status === 'available') {
+                        row.style.display = '';
+                    } else if (filterValue === 'unavailable' && status === 'unavailable') {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             });
-        });
-        
-        const deleteButtons = document.querySelectorAll('.delete-btn');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const categoryName = this.closest('tr').querySelector('td:first-child div div:first-child').textContent;
-                if (confirm(`Are you sure you want to delete the ${categoryName} category?`)) {
-                    alert(`Category ${categoryName} would be deleted.`);
-                }
-            });
-        });
+        }
     });
 </script>
 @endsection
