@@ -363,18 +363,17 @@
         }
 
         .dish-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center; /* Center items when few */
+}
 
-        .dish-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
+.dish-card {
+    max-width: 320px; /* Limit card size */
+    margin: 0 auto;
+}
+
 
         .dish-card:hover {
             transform: translateY(-10px);
@@ -773,6 +772,88 @@
 .checkout-btn {
     width: 100%;
 }
+.category-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: var(--light-gray);
+    color: var(--dark);
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.category-btn:hover, .category-btn.active {
+    background: var(--primary);
+    color: white;
+}
+.menu-container {
+    display: flex;
+    gap: 30px;
+    height: 600px; /* total height for the menu section */
+}
+.sidebar {
+    width: 250px;
+    background: var(--white); /* sidebar background */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+}
+
+.sidebar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 10px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li {
+    margin-bottom: 15px;
+}
+
+.category-list button {
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: var(--light-gray);
+    color: var(--dark);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-list button:hover,
+.category-list button.active {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+
+.dishes-grid-container {
+    flex: 1;
+    overflow-y: auto; /* enable vertical scroll */
+    max-height: 100%; /* match container height */
+}
+
+.dish-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding-right: 10px; /* avoid scrollbar overlap */
+}
 
     </style>
 </head>
@@ -794,7 +875,8 @@
                 </ul>
                 
                 <div class="nav-buttons">
-                   <button class="btn btn-outline" onclick="window.location.href='/Login'">Login</button>
+                  <button class="btn btn-outline" onclick="window.location.href='/Login'">Login</button>
+
                    <a href="{{ route('register') }}"> <button class="btn btn-primary" >Sign Up</button></a>
                   <div class="cart-icon">
     <i class="fas fa-shopping-cart"></i>
@@ -817,60 +899,8 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Delicious food <span>delivered</span> to your door</h1>
-                    <p class="hero-subtitle">Order your favorite meals from the best restaurants in town. Fast delivery, fresh food, and great prices.</p>
-                    
-                    <div class="search-bar">
-                        <input type="text" placeholder="What are you craving?">
-                        <button>Search</button>
-                    </div>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>15-30 min</h3>
-                                <p>Delivery</p>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>4.8/5</h3>
-                                <p>Customer Rating</p>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>200+</h3>
-                                <p>Restaurants</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Food">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Categories Section -->
+    {{-- <!-- Categories Section -->
     <section class="categories">
         <div class="container">
             <div class="section-title">
@@ -916,91 +946,189 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <!-- Popular Dishes -->
     <section class="dishes">
-        <div class="container">
-            <div class="section-title">
-                <h2>Popular Dishes</h2>
-                <p>Discover our most ordered dishes from around the city</p>
-            </div>
-            
-            <div class="dish-grid">
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Classic Beef Burger</h3>
-                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
-                        <div class="dish-meta">
-                            <div class="price">$12.99</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(128)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Margherita Pizza</h3>
-                        <p>Classic pizza with tomato sauce, mozzarella </p>
-                        <div class="dish-meta">
-                            <div class="price">$15.99</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(96)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Spaghetti Carbonara</h3>
-                        <p>Creamy pasta with bacon, eggs, and parmesan cheese</p>
-                        <div class="dish-meta">
-                            <div class="price">$14.50</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>(78)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
+   <div class="container menu-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+    <h3>Filter by Category</h3>
+    <ul class="category-list">
+        <li><button class="active" data-filter="all">All</button></li>
+        <li><button data-filter="fast-food">Fast Food</button></li>
+        <li><button data-filter="main-course">Main Course</button></li>
+        <li><button data-filter="desserts">Desserts</button></li>
+        <li><button data-filter="drinks">Drinks</button></li>
+    </ul>
+</div>
+
+
+    <!-- Dish Grid -->
+    <div class="dishes-grid-container">
+        <div class="dish-grid">
+          <!-- Fast Food -->
+<div class="dish-card" data-category="fast-food">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1604908177523-cb5e85d21a6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cheese Burger">
+    </div>
+    <div class="dish-info">
+        <h3>Cheese Burger</h3>
+        <p>Grilled beef patty with cheddar cheese and fresh veggies</p>
+        <div class="dish-meta">
+            <div class="price">$13.50</div>
         </div>
-    </section>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="fast-food">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="French Fries">
+    </div>
+    <div class="dish-info">
+        <h3>French Fries</h3>
+        <p>Crispy golden fries served with ketchup</p>
+        <div class="dish-meta">
+            <div class="price">$4.99</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<!-- Main Course -->
+<div class="dish-card" data-category="main-course">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1603078419372-3f0e03a576f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grilled Chicken">
+    </div>
+    <div class="dish-info">
+        <h3>Grilled Chicken</h3>
+        <p>Marinated grilled chicken served with steamed vegetables</p>
+        <div class="dish-meta">
+            <div class="price">$18.00</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="main-course">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Steak">
+    </div>
+    <div class="dish-info">
+        <h3>Beef Steak</h3>
+        <p>Juicy steak with garlic butter sauce and mashed potatoes</p>
+        <div class="dish-meta">
+            <div class="price">$25.00</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="main-course">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grilled Salmon">
+    </div>
+    <div class="dish-info">
+        <h3>Grilled Salmon</h3>
+        <p>Salmon fillet grilled to perfection with lemon butter</p>
+        <div class="dish-meta">
+            <div class="price">$22.50</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<!-- Desserts -->
+<div class="dish-card" data-category="desserts">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1599785209799-17d59cb7956c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chocolate Cake">
+    </div>
+    <div class="dish-info">
+        <h3>Chocolate Cake</h3>
+        <p>Rich chocolate cake topped with chocolate ganache</p>
+        <div class="dish-meta">
+            <div class="price">$6.50</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="desserts">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1606755962776-85778b155c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ice Cream">
+    </div>
+    <div class="dish-info">
+        <h3>Vanilla Ice Cream</h3>
+        <p>Creamy vanilla ice cream served with chocolate sauce</p>
+        <div class="dish-meta">
+            <div class="price">$5.00</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="desserts">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1617196037508-0a5bce9b0c34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cupcake">
+    </div>
+    <div class="dish-info">
+        <h3>Strawberry Cupcake</h3>
+        <p>Fluffy cupcake topped with fresh strawberries</p>
+        <div class="dish-meta">
+            <div class="price">$4.50</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<!-- Drinks -->
+<div class="dish-card" data-category="drinks">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coffee">
+    </div>
+    <div class="dish-info">
+        <h3>Cappuccino</h3>
+        <p>Hot espresso with steamed milk foam</p>
+        <div class="dish-meta">
+            <div class="price">$3.50</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="drinks">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1524594157362-7a50e678ff24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smoothie">
+    </div>
+    <div class="dish-info">
+        <h3>Mango Smoothie</h3>
+        <p>Refreshing mango smoothie with ice</p>
+        <div class="dish-meta">
+            <div class="price">$4.99</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+<div class="dish-card" data-category="drinks">
+    <div class="dish-image">
+        <img src="https://images.unsplash.com/photo-1612190743437-5a7c731f55d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lemonade">
+    </div>
+    <div class="dish-info">
+        <h3>Fresh Lemonade</h3>
+        <p>Cold lemonade with fresh lemon slices</p>
+        <div class="dish-meta">
+            <div class="price">$3.00</div>
+        </div>
+    </div>
+    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+</div>
+
+        </div>
+    </div>
+</div>
+
+</section>
 
     <!-- How it Works -->
     <section class="how-it-works">
@@ -1091,7 +1219,31 @@
     </footer>
 
     <script>
-        
+   document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.category-list button');
+    const dishCards = document.querySelectorAll('.dish-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            const filter = this.getAttribute('data-filter');
+
+            dishCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+
+
+ 
         // Simple JavaScript for interactive elements
 document.addEventListener('DOMContentLoaded', function() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');

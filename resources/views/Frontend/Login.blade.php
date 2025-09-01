@@ -344,7 +344,7 @@
                         <div class="logo mb-2">
                             <i class="fas fa-utensils fa-2x" style="color: #daa619;"></i>
                         </div>
-                        <h5 class="mb-1">FoodExpress Registration</h5>
+                        <h5 class="mb-1">FoodExpress Login </h5>
                         <p class="mb-0 mt-2">Join us for delicious food experiences</p>
                     </div>
 
@@ -357,28 +357,10 @@
                             </div>
                         @endif
                         
-                        <form action="{{ route('customer.create') }}" method="POST" id="registrationForm">
+                        <form action="{{ route('customer.create') }}" method="POST" id="loginForm">
                             @csrf
 
-                            {{-- Name --}}
-                            <div class="mb-4">
-                                <label for="name" class="form-label"> Name</label>
-                                <div class="input-with-icon">
-                                    <i class="fas fa-user" style="color: #030b57;"></i>
-                                    <input 
-                                        type="text" 
-                                        class="form-control" 
-                                        id="name" 
-                                        name="name" 
-                                        value="{{ old('name') }}" 
-                                        placeholder="Enter your name" 
-                                        required>
-                                </div>
-                                @error('name')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-
+                           
                             {{-- Phone --}}
                             <div class="mb-4">
                                 <label for="phone" class="form-label">Phone Number</label>
@@ -410,7 +392,7 @@
                                         class="form-control border-start-0" 
                                         id="password" 
                                         name="password" 
-                                        placeholder="Create a secure password (min. 4 characters)" 
+                                        placeholder="Enter password (min. 4 characters)" 
                                         required>
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                         <i class="fas fa-eye" style="color: #030b57;"></i>
@@ -421,28 +403,7 @@
                                 @enderror
                             </div>
                             
-                            {{-- Confirm Password --}}
-                            <div class="mb-4">
-                                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0">
-                                        <i class="fas fa-lock" style="color: #030b57;"></i>
-                                    </span>
-                                    <input 
-                                        type="password" 
-                                        class="form-control border-start-0" 
-                                        id="password_confirmation" 
-                                        name="password_confirmation" 
-                                        placeholder="Confirm your password" 
-                                        required>
-                                    <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
-                                        <i class="fas fa-eye" style="color: #030b57;"></i>
-                                    </button>
-                                </div>
-                                @error('password_confirmation')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
+                    
 
                             {{-- Buttons --}}
                             <div class="d-flex justify-content-between mt-4 border-top pt-4">
@@ -450,13 +411,13 @@
                                     <i class="fas fa-arrow-left me-2" style="color: #030b57;"></i>Back to Homepage
                                 </a>
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-user-plus me-2"></i>Register
+                                    <i class="fas fa-sign-in me-2"></i>Login
                                 </button>
                             </div>
                         </form>
 
                         <div class="login-link">
-                            Already have an account? <a href="{{ url('/Login') }}">Sign In</a>
+                            Don't have an account? <a href="{{ url('/FormRegister') }}">Sign Up</a>
                         </div>
                         
                        

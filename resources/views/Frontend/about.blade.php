@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodExpress - Delicious Food Delivered</title>
+    <title>FoodExpress - About Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
+             * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -774,10 +774,269 @@
     width: 100%;
 }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #030b57;
+            --primary-light: #0f096c;
+            --primary-dark: #0c056b;
+            --secondary: #2ec4b6;
+            --dark: #031654;
+            --light: #f8f9fa;
+            --light-gray: #e9ecef;
+            --gray: #8a8a8a;
+            --white: #ffffff;
+            --success: #4caf50;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 32px;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-right: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        /* About Us Section */
+        .about-hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1523986371872-9d3ba2e2f9b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-container img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .mission-vision {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mission-vision div {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .mission-vision div:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-vision h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .team-member h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .team-member p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -790,219 +1049,72 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/Menu">Menu</a></li>
                     <li><a href="/about">About</a></li>
-                  <li><a href="/contact">Contact</a></li>
+                   <li><a href="/contact">Contact</a></li>
                 </ul>
                 
                 <div class="nav-buttons">
-                   <button class="btn btn-outline" onclick="window.location.href='/Login'">Login</button>
-                   <a href="{{ route('register') }}"> <button class="btn btn-primary" >Sign Up</button></a>
-                  <div class="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-count">0</span>
-
-    <!-- Cart dropdown -->
-    <div class="cart-dropdown">
-        <h4>Your Cart</h4>
-        <ul class="cart-items"></ul>
-        <div class="cart-total">
-            <span>Subtotal: $<span id="cart-total">0.00</span></span>
-        </div>
-        <button class="btn btn-primary checkout-btn">Checkout</button>
-        <p class="empty-cart">Your cart is empty</p>
-    </div>
-</div>
-
+                 <button class="btn btn-outline" onclick="window.location.href='/Login'">Login</button>
+                    <button class="btn btn-primary">Sign Up</button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- About Hero -->
+    <section class="about-hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Delicious food <span>delivered</span> to your door</h1>
-                    <p class="hero-subtitle">Order your favorite meals from the best restaurants in town. Fast delivery, fresh food, and great prices.</p>
-                    
-                    <div class="search-bar">
-                        <input type="text" placeholder="What are you craving?">
-                        <button>Search</button>
+            <h1>About FoodExpress</h1>
+            <p>Delivering delicious food to your doorstep with speed, quality, and care. Discover our story, mission, and the amazing team behind our service.</p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="about-section">
+        <div class="container about-container">
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Our Story">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>Founded with a passion for delivering great food, FoodExpress has grown into a trusted online food delivery platform. We connect customers with top restaurants in their city, offering a wide variety of cuisines to satisfy every craving.</p>
+                <p>Our goal is to make food ordering simple, fast, and enjoyable while supporting local restaurants and chefs.</p>
+
+                <div class="mission-vision">
+                    <div>
+                        <h3>Our Mission</h3>
+                        <p>To provide fast, reliable, and delicious food delivery while creating exceptional customer experiences.</p>
                     </div>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>15-30 min</h3>
-                                <p>Delivery</p>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>4.8/5</h3>
-                                <p>Customer Rating</p>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-item">
-                            <div class="stat-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="stat-text">
-                                <h3>200+</h3>
-                                <p>Restaurants</p>
-                            </div>
-                        </div>
+                    <div>
+                        <h3>Our Vision</h3>
+                        <p>To be the most trusted and innovative food delivery service, connecting people with quality meals wherever they are.</p>
                     </div>
-                </div>
-                
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Food">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <div class="section-title">
-                <h2>Browse by Category</h2>
-                <p>Explore our diverse food categories and find your favorite dishes</p>
+    <!-- Team Section -->
+    <section class="team">
+        <h2>Meet Our Team</h2>
+        <div class="container team-grid">
+            <div class="team-member">
+                <img src="/User/ceo.jpg" alt="John Doe">
+                <h4>Ech Leakhena</h4>
+                <p>CEO & Founder</p>
             </div>
-            
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon bg-1">
-                        <i class="fas fa-pizza-slice"></i>
-                    </div>
-                    <h3>Fast Food</h3>
-                    <p>Burgers, pizzas, fries </p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-2">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Main Course</h3>
-                    <p>Hearty and satisfying dishes</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-3">
-                        <i class="fas fa-ice-cream"></i>
-                    </div>
-                    <h3>Desserts</h3>
-                    <p>Sweet treats for every occasion</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-4">
-                        <i class="fas fa-coffee"></i>
-                    </div>
-                    <h3>Drinks</h3>
-                    <p>Refreshing beverages</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
+            <div class="team-member">
+                <img src="/User/back.jpg" alt="Jane Smith">
+                <h4>Nov Thearith</h4>
+                <p>BackEnd Developer</p>
+            </div>
+           
+            <div class="team-member">
+                <img src="/User/front.jpg" alt="Sarah Brown">
+                <h4>Sath ChhunSeak</h4>
+                <p>FrontEnd Developer</p>
             </div>
         </div>
     </section>
 
-    <!-- Popular Dishes -->
-    <section class="dishes">
-        <div class="container">
-            <div class="section-title">
-                <h2>Popular Dishes</h2>
-                <p>Discover our most ordered dishes from around the city</p>
-            </div>
-            
-            <div class="dish-grid">
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Classic Beef Burger</h3>
-                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
-                        <div class="dish-meta">
-                            <div class="price">$12.99</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(128)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Margherita Pizza</h3>
-                        <p>Classic pizza with tomato sauce, mozzarella </p>
-                        <div class="dish-meta">
-                            <div class="price">$15.99</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(96)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
-                    </div>
-                    <div class="dish-info">
-                        <h3>Spaghetti Carbonara</h3>
-                        <p>Creamy pasta with bacon, eggs, and parmesan cheese</p>
-                        <div class="dish-meta">
-                            <div class="price">$14.50</div>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>(78)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works -->
+   <!-- How it Works -->
     <section class="how-it-works">
         <div class="container">
             <div class="section-title">
@@ -1090,102 +1202,5 @@
         </div>
     </footer>
 
-    <script>
-        
-        // Simple JavaScript for interactive elements
-document.addEventListener('DOMContentLoaded', function() {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    const cartCount = document.querySelector('.cart-count');
-    const cartDropdown = document.querySelector('.cart-dropdown');
-    const cartItemsContainer = document.querySelector('.cart-items');
-    const cartTotalElement = document.getElementById('cart-total');
-    const cartIcon = document.querySelector('.cart-icon');
-    const emptyCartMessage = document.querySelector('.empty-cart');
-
-    let cart = [];
-    let count = 0;
-    let subtotal = 0;
-
-    // Toggle dropdown
-    cartIcon.addEventListener('click', () => {
-        cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Add to cart
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const dishCard = button.closest('.dish-card');
-            const name = dishCard.querySelector('h3').textContent;
-            const price = parseFloat(dishCard.querySelector('.price').textContent.replace('$', ''));
-            const img = dishCard.querySelector('img').src;
-
-            // Check if item exists
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty += 1;
-                existingItem.subtotal = existingItem.qty * existingItem.price;
-            } else {
-                cart.push({ name, price, img, qty: 1, subtotal: price });
-            }
-
-            count++;
-            subtotal += price;
-
-            cartCount.textContent = count;
-            renderCart();
-        });
-    });
-
-    // Render cart
-    function renderCart() {
-        cartItemsContainer.innerHTML = '';
-
-        if (cart.length === 0) {
-            emptyCartMessage.style.display = 'block';
-        } else {
-            emptyCartMessage.style.display = 'none';
-        }
-
-        cart.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <img src="${item.img}" alt="${item.name}">
-                <div class="cart-item-info">
-                    <h5>${item.name}</h5>
-                    <span>${item.qty} × $${item.price.toFixed(2)}</span>
-                </div>
-                <div class="cart-item-subtotal">$${item.subtotal.toFixed(2)}</div>
-                <button class="remove-item" data-index="${index}">✖</button>
-            `;
-            cartItemsContainer.appendChild(li);
-        });
-
-        cartTotalElement.textContent = subtotal.toFixed(2);
-
-        // Add remove button events
-        const removeButtons = document.querySelectorAll('.remove-item');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                const index = this.getAttribute('data-index');
-                removeFromCart(index);
-                e.stopPropagation(); // Prevent dropdown toggle
-            });
-        });
-    }
-
-    function removeFromCart(index) {
-        const item = cart[index];
-        subtotal -= item.subtotal;
-        count -= item.qty;
-        cart.splice(index, 1);
-
-        cartCount.textContent = count;
-        renderCart();
-    }
-});
-
-
-
-    </script>
 </body>
 </html>

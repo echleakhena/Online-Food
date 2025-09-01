@@ -15,7 +15,18 @@ use App\Http\Controllers\{
 Route::get('/', function(){
     return view('Frontend.index');
 });
-                                                                                                                                                                                                                                                                          
+Route::get('/Menu', function(){
+    return view('Frontend.Menu');
+});        
+Route::get('/about', function(){
+    return view('Frontend.about');
+}); 
+Route::get('/Login', function(){
+    return view('Frontend.Login');
+});  
+Route::get('/contact', function(){
+    return view('Frontend.contact');
+});                                                                                                                                                                                                                                                          
 Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
 
 Route::get('/FormRegister',[CustomerController::class, 'rigister'])->name('register');

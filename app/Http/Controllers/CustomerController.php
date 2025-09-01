@@ -19,6 +19,7 @@ class CustomerController extends Controller
     public function rigister(){
         return view('Frontend.Register');
     }
+    
     public function add(){
         return view('Backend.Customer.Add');
     }
