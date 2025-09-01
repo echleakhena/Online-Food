@@ -71,6 +71,10 @@ Route::prefix('food')->group(function () {
 
 Route::prefix('order')->group(function () {
     Route::get('/List', [OrderController::class, 'list'])->name('order.list');
+    Route::post('/store', [OrderController::class, 'store'])->name('order.store');
+    Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::post('/update/{id}', [OrderController::class, 'update'])->name('order.update');
+    // Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 });
 
 
