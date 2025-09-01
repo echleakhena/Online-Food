@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card stat-card">
+            {{-- <div class="card stat-card">
                 <div class="icon rating-icon">
                     <i class="fas fa-star"></i>
                 </div>
@@ -79,7 +79,7 @@
                         <span>0.2 since last month</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <!-- Charts and Recent Orders -->
