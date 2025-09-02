@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-public function __construct()
-{
-    $this->middleware('auth');
-    $this->middleware(['permission:users.view'])->only('list');
-    $this->middleware(['permission:users.create'])->only('create');
-    $this->middleware(['permission:users.delete'])->only('delete');
-}
+// public function __construct()
+// {
+//     $this->middleware('auth');
+//     $this->middleware(['permission:users.view'])->only('list');
+//     $this->middleware(['permission:users.create'])->only('create');
+//     $this->middleware(['permission:users.delete'])->only('delete');
+// }
 
 
     public function List(){
