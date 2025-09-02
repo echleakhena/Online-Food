@@ -28,12 +28,13 @@
 
         <!-- Stats Cards -->
         <div class="dashboard-cards">
+            @foreach($orders as $order)
             <div class="card stat-card">
                 <div class="icon orders-icon">
                     <i class="fas fa-shopping-bag"></i>
                 </div>
                 <div class="info">
-                    <h3>152</h3>
+                    <h3>{{$totalOrders }}</h3>
                     <p>Total Orders</p>
                     <div class="trend up">
                         <i class="fas fa-arrow-up"></i>
@@ -46,7 +47,7 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
                 <div class="info">
-                    <h3>$3,845</h3>
+                    <h3>{{$totalRevenue }}</h3>
                     <p>Total Revenue</p>
                     <div class="trend up">
                         <i class="fas fa-arrow-up"></i>
@@ -59,7 +60,7 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="info">
-                    <h3>342</h3>
+                    <h3>{{$totalCustomers }}</h3>
                     <p>Total Customers</p>
                     <div class="trend up">
                         <i class="fas fa-arrow-up"></i>
@@ -79,9 +80,13 @@
                         <span>0.2 since last month</span>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div> --}}
+=======
+            </div>
+            @endforeach
+>>>>>>> fbaf2d54b53c981f31f03c41a88ce10c06b5dde1
         </div>
-
         <!-- Charts and Recent Orders -->
         <div class="charts-orders">
             <div class="chart-container">
