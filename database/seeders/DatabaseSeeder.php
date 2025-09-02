@@ -1,22 +1,20 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
-
     public function run(): void
     {
     
-
-        User::factory()->create([
-            'username' => 'leak',
-            'email' => 'leak@gmail.com',
-            'password'=>'2222'
+        $this->call([
+           RolePermissionSeeder::class,
+          
         ]);
+
+        
     }
 }
