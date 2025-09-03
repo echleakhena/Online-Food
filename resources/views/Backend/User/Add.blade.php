@@ -52,9 +52,7 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <!-- Phone -->
-                            <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-3">
                                 <label for="phone" class="form-label">
                                     Phone Number <span class="text-danger">*</span>
                                 </label>
@@ -76,6 +74,31 @@
                                     @enderror
                                 </div>
                             </div>
+                            <!-- Phone -->
+                     <div class="col-md-6 mb-3">
+    <label for="role" class="form-label">
+        Assign Role <span class="text-danger">*</span>
+    </label>
+    <div class="input-group">
+        <span class="input-group-text">
+            <i class="fas fa-user-shield"></i>
+        </span>
+        <select 
+            class="form-control @error('role') is-invalid @enderror" 
+            id="role" 
+            name="role" 
+            required
+        >
+            <option value="" disabled selected>Select Role</option>
+            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+            <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
+        </select>
+        @error('role')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
                         </div>
 
                         <!-- Email -->
