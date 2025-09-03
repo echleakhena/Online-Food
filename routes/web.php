@@ -21,6 +21,7 @@ Route::get('/Menu', fn() => view('Frontend.Menu'));
 Route::get('/about', fn() => view('Frontend.about'));
 Route::get('/Login', fn() => view('Frontend.Login'));
 Route::get('/contact', fn() => view('Frontend.contact'));
+Route::get('/checkout', fn() => view('Frontend.Checkout'));
 
 Route::get('/Auth',[AuthController::class, 'auth'])->name('auth');
 Route::post('/AdminLogin', [AuthController::class, 'adminlogin'])->name('auth.login');

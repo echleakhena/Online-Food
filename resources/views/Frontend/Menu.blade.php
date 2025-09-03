@@ -912,7 +912,7 @@
         <div class="cart-total">
             <span>Subtotal: $<span id="cart-total">0.00</span></span>
         </div>
-        <button class="btn btn-primary checkout-btn">Checkout</button>
+        <button class="btn btn-primary checkout-btn" onclick="window.location.href='/checkout'">Checkout</button>
         <p class="empty-cart">Your cart is empty</p>
     </div>
 </div>
@@ -1316,7 +1316,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.querySelector(".cart-count");
 
+    // Function to update cart count instantly
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
+
+    // Run on load
+    updateCartCount();
+
+    // Handle add-to-cart buttons
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", (e) => {
+            const card = e.target.closest(".dish-card");
+            const name = card.querySelector("h3").textContent;
+            const price = parseFloat(card.querySelector(".price").textContent.replace("$", ""));
+
+            // check if item exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            // Save back to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Update cart badge instantly
+            updateCartCount();
+        });
+    });
+});
 
     </script>
 </body>
