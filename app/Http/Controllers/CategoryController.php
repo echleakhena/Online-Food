@@ -7,6 +7,15 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+
+       public function __construct()
+    {
+        $this->middleware(['permission:categories.view'])->only('list');
+        $this->middleware(['permission:categories.create'])->only('store');
+        $this->middleware(['permission:categories.update'])->only(['edit','update']);
+        $this->middleware(['permission:categories.delete'])->only('delete');
+    }
+
     public function list(){
         $categories = Category::where('status', 'available')->paginate(5);
         return view('Backend.E-Food.Category.List', compact('categories'));

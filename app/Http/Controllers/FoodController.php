@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class FoodController extends Controller
 {
+
+     public function __construct()
+    {
+        $this->middleware(['permission:foods.view'])->only('List');
+        $this->middleware(['permission:foods.create'])->only('Create');
+        $this->middleware(['permission:foods.update'])->only('Update');
+        $this->middleware(['permission:foods.delete'])->only('Delete');
+       
+    }
     public function list()
     {
         $query = Food::with('category');

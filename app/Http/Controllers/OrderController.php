@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    
+   public function __construct()
+    {
+        $this->middleware(['permission:orders.view'])->only('List');
+        $this->middleware(['permission:orders.create'])->only('Create');
+        $this->middleware(['permission:orders.update'])->only('Update');
+        $this->middleware(['permission:orders.delete'])->only('Delete');
+       
+    }
+
     public function List(){
         $orders = Order::with(['customer', 'food'])->paginate(10);
         $totalOrders = Order::count();

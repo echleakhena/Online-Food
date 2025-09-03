@@ -12,31 +12,29 @@ use App\Http\Controllers\{
     ReportController,
     UserController
 };
-use App\Http\Middleware\AdminAuth;
 
 // Public 
 
 Route::get('/', fn() => view('Frontend.index'));
 Route::get('/Menu', fn() => view('Frontend.Menu'));
 Route::get('/about', fn() => view('Frontend.about'));
-Route::get('/Login', fn() => view('Frontend.Login'));
+Route::get('/login', fn() => view('Frontend.Login'));
 Route::get('/contact', fn() => view('Frontend.contact'));
 
-Route::get('/Auth',[AuthController::class, 'auth'])->name('auth');
-Route::post('/AdminLogin', [AuthController::class, 'adminlogin'])->name('auth.login');
+Route::get('/login/auth',[AuthController::class, 'auth'])->name('auth');
+Route::post('/AdminLogin', [AuthController::class, 'adminlogin'])->name('login');
+
 
 Route::get('/FormRegister',[CustomerController::class, 'rigister'])->name('register');
 Route::get('/AddCustomer', [CustomerController::class, 'add'])->name('customer.add');
-Route::post('/CustomerCreate',[CustomerController::class, 'create'])->name('customer.create');
-
+Route::post('/CustomerCreate',[CustomerController::class, 'create'])->name('customer.form');
 
 
 //private 
 
-Route::middleware([AdminAuth::class, 'auth'])->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/Admin', [AdminController::class, 'admin'])->name('admin.index');
-
     Route::prefix('user')->group(function () {
         Route::get('/list', [UserController::class, 'list'])->name('user.list');
         Route::get('/add', [UserController::class, 'add'])->name('user.add');
@@ -82,4 +80,3 @@ Route::middleware([AdminAuth::class, 'auth'])->group(function () {
         Route::get('/list', [ReportController::class, 'list'])->name('report.list');
     });
 });
-

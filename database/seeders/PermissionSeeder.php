@@ -2,23 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
-class RolePermissionSeeder extends Seeder
+class PermissionSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        // Clear cached permissions
+        // clear cache
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-      
-        $admin = Role::firstOrCreate(['name' => 'admin']);
-        $staff = Role::firstOrCreate(['name' => 'staff']);
         $permissions = [
             'users.create','users.delete','users.view',
             'categories.create','categories.update','categories.delete','categories.view',
@@ -30,12 +28,19 @@ class RolePermissionSeeder extends Seeder
             'dashboard.view',
         ];
 
+        // create permissions
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+            Permission::findOrCreate($permission);
         }
 
+        // create roles
+        $admin = Role::findOrCreate('admin');
+        $staff = Role::findOrCreate('staff');
+
+        // assign permissions to admin
         $admin->syncPermissions($permissions);
 
+        // assign limited permissions to staff
         $staff->syncPermissions([
             'categories.create','categories.update','categories.view',
             'foods.create','foods.update','foods.view',
@@ -45,6 +50,8 @@ class RolePermissionSeeder extends Seeder
             'receipts.create','receipts.update','receipts.view',
             'dashboard.view',
         ]);
-     
+
+        // clear cache again
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
     }
 }
