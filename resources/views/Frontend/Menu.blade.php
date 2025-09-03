@@ -841,18 +841,41 @@
     transform: translateX(5px);
 }
 
+.dishes {
+  width: 100vw;       /* full viewport width */
+  height: 100vh;      /* full viewport height */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
 
+.menu-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sidebar full height */
+.sidebar {
+  width: 250px;
+  background: #f8f8f8;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+/* Dish grid takes rest of screen */
 .dishes-grid-container {
-    flex: 1;
-    overflow-y: auto; /* enable vertical scroll */
-    max-height: 100%; /* match container height */
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .dish-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    padding-right: 10px; /* avoid scrollbar overlap */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  gap: 20px;
 }
 
     </style>
@@ -900,72 +923,26 @@
     </header>
 
 
-    {{-- <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <div class="section-title">
-                <h2>Browse by Category</h2>
-                <p>Explore our diverse food categories and find your favorite dishes</p>
-            </div>
-            
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon bg-1">
-                        <i class="fas fa-pizza-slice"></i>
-                    </div>
-                    <h3>Fast Food</h3>
-                    <p>Burgers, pizzas, fries </p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-2">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Main Course</h3>
-                    <p>Hearty and satisfying dishes</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-3">
-                        <i class="fas fa-ice-cream"></i>
-                    </div>
-                    <h3>Desserts</h3>
-                    <p>Sweet treats for every occasion</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon bg-4">
-                        <i class="fas fa-coffee"></i>
-                    </div>
-                    <h3>Drinks</h3>
-                    <p>Refreshing beverages</p>
-                    <a href="#" class="btn btn-outline">View Detail</a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+   
 
-    <section class="dishes">
-   <div class="container menu-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-    <h3>Filter by Category</h3>
-    <ul class="category-list">
-        <li><button class="active" data-filter="all">All</button></li>
-        <li><button data-filter="fast-food">Fast Food</button></li>
-        <li><button data-filter="main-course">Main Course</button></li>
-        <li><button data-filter="desserts">Desserts</button></li>
-        <li><button data-filter="drinks">Drinks</button></li>
-    </ul>
-</div>
+   <section class="dishes">
+   <div class="menu-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+         <h3>Filter by Category</h3>
+         <ul class="category-list">
+            <li><button class="active" data-filter="all">All</button></li>
+            <li><button data-filter="fast-food">Fast Food</button></li>
+            <li><button data-filter="main-course">Main Course</button></li>
+            <li><button data-filter="desserts">Desserts</button></li>
+            <li><button data-filter="drinks">Drinks</button></li>
+         </ul>
+      </div>
 
-
-    <!-- Dish Grid -->
-    <div class="dishes-grid-container">
-        <div class="dish-grid">
+      <!-- Dish Grid -->
+      <div class="dishes-grid-container">
+         <div class="dish-grid">
+        
           <!-- Fast Food -->
 <div class="dish-card" data-category="fast-food">
     <div class="dish-image">
@@ -1124,11 +1101,14 @@
     <button class="add-to-cart"><i class="fas fa-plus"></i></button>
 </div>
 
-        </div>
-    </div>
-</div>
+     
 
+
+         </div>
+      </div>
+   </div>
 </section>
+
 
     <!-- How it Works -->
     <section class="how-it-works">
