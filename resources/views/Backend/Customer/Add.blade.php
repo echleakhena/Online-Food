@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('customer.create') }}" method="POST" class="needs-validation" novalidate>
+                    <form action="{{ route('customers.create') }}" method="POST" class="needs-validation" novalidate>
                         @csrf
                         
                         <div class="row">

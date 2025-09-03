@@ -277,32 +277,28 @@
                 <h1>Food Express</h1>
                 <p>Sign in to your account</p>
             </div>
-            
+        
             <form action="{{ route('auth.login') }}" method="POST">
-    @csrf
+                @csrf
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <i class="fas fa-envelope" style="color: #02013e;"></i>
+                </div>
 
-    <div class="input-group">
-        <input type="email" name="email" placeholder="Email" required>
-        <i class="fas fa-envelope" style="color: #02013e;"></i>
-    </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class="fas fa-lock" style="color: #02013e;"></i>
+                </div>
 
-    <div class="input-group">
-        <input type="password" name="password" placeholder="Password" required>
-        <i class="fas fa-lock" style="color: #02013e;"></i>
-    </div>
+                <button type="submit" class="btn">Login</button>
 
-    <button type="submit" class="btn">Login</button>
-
-    <div class="extra-options">
-        <label class="remember">
-            <input type="checkbox" name="remember"> Remember me
-        </label>
-        <a href="#" class="forgot-password">Forgot Password?</a>
-    </div>
-</form>
-
-            
-           
+                <div class="extra-options">
+                    <label class="remember">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+            </form>
         </div>
     </div>
 

@@ -12,24 +12,24 @@ class AuthController extends Controller
     }
 
      public function adminlogin(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    $credentials = $request->only('email', 'password');
-    $remember = $request->filled('remember');
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
 
-    if (Auth::attempt($credentials, $remember)) {
-        $request->session()->regenerate();
-        return redirect()->route('admin.index'); 
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.index'); 
+        }
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials. Please try again.',
+        ])->withInput($request->only('email'));
     }
-
-    return back()->withErrors([
-        'email' => 'Invalid credentials. Please try again.',
-    ])->withInput($request->only('email'));
-}
 
     
     public function logout(Request $request)
