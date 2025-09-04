@@ -923,7 +923,259 @@
     <section class="dishes">
         <div class="container">
             <div class="section-title">
-                <h2>Popular Dishes</h2>
+                <h2>Popular Fast Food</h2>
+                <p>Discover our most ordered dishes from around the city</p>
+            </div>
+            
+            <div class="dish-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Classic Beef Burger</h3>
+                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
+                        <div class="dish-meta">
+                            <div class="price">$12.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(128)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic pizza with tomato sauce, mozzarella </p>
+                        <div class="dish-meta">
+                            <div class="price">$15.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(96)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Spaghetti Carbonara</h3>
+                        <p>Creamy pasta with bacon, eggs, and parmesan cheese</p>
+                        <div class="dish-meta">
+                            <div class="price">$14.50</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(78)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Popular Dishes -->
+    <section class="dishes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Main Course</h2>
+                <p>Discover our most ordered dishes from around the city</p>
+            </div>
+            
+            <div class="dish-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Classic Beef Burger</h3>
+                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
+                        <div class="dish-meta">
+                            <div class="price">$12.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(128)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic pizza with tomato sauce, mozzarella </p>
+                        <div class="dish-meta">
+                            <div class="price">$15.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(96)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Spaghetti Carbonara</h3>
+                        <p>Creamy pasta with bacon, eggs, and parmesan cheese</p>
+                        <div class="dish-meta">
+                            <div class="price">$14.50</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(78)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Popular Dishes -->
+    <section class="dishes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Desserts</h2>
+                <p>Discover our most ordered dishes from around the city</p>
+            </div>
+            
+            <div class="dish-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Classic Beef Burger</h3>
+                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
+                        <div class="dish-meta">
+                            <div class="price">$12.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(128)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic pizza with tomato sauce, mozzarella </p>
+                        <div class="dish-meta">
+                            <div class="price">$15.99</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(96)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
+                    </div>
+                    <div class="dish-info">
+                        <h3>Spaghetti Carbonara</h3>
+                        <p>Creamy pasta with bacon, eggs, and parmesan cheese</p>
+                        <div class="dish-meta">
+                            <div class="price">$14.50</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(78)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Popular Dishes -->
+    <section class="dishes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Drink</h2>
                 <p>Discover our most ordered dishes from around the city</p>
             </div>
             
