@@ -6,17 +6,24 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable; 
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
 
+ 
+
+    use HasFactory, Notifiable,HasRoles;
+    protected $guard_name = 'web';
+    protected $table = 'users';
+    
     protected $fillable = [
         'username',
         'email',
         'phone',
         'password',
         'image',
+        'role',
         'note',
     ];
 

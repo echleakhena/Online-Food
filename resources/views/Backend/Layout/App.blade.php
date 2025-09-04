@@ -689,10 +689,17 @@
             <i class="fas fa-user-cog"></i>
             <span>User</span>
         </a>
-          <a href="" class="menu-item">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-        </a>
+       <form action="{{ route('logout.dashboard') }}" method="POST">
+            @csrf
+            <button type="submit" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+
+
+    
+
     </div>
 
      <!-- Main Content -->

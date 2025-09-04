@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Container\Attributes\Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -24,6 +25,8 @@ class AuthController extends Controller
     if (Auth::attempt($credentials, $remember)) {
         $request->session()->regenerate();
         return redirect()->route('admin.index'); 
+    }else{
+        return redirect()->route('pary');
     }
 
     return back()->withErrors([
@@ -34,11 +37,11 @@ class AuthController extends Controller
     
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth'); 
+        return redirect()->route('pary'); 
     }
 }

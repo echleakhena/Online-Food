@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,7 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+         $middleware->alias([
+           'authenticate'=> Authenticate::class,
+            'permission' => PermissionMiddleware::class,
+            'role'       => RoleMiddleware::class   
+         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

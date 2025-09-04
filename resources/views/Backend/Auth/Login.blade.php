@@ -278,7 +278,7 @@
                 <p>Sign in to your account</p>
             </div>
             
-            <form action="{{ route('auth.login') }}" method="POST">
+            <form action="{{ route('login') }}" method="POST">
     @csrf
 
     <div class="input-group">

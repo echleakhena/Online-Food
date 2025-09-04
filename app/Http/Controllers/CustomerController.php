@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+
+
+      public function __construct()
+    {
+        $this->middleware(['permission:customers.view'])->only('list');
+        $this->middleware(['permission:customers.create'])->only(['add', 'create']);
+        $this->middleware(['permission:customers.update'])->only('update'); // (you need to add update method later)
+        $this->middleware(['permission:customers.delete'])->only('delete');
+    }
    public function list()
 {
     $customers = Customer::orderBy('created_at', 'desc')->get();
