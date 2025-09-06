@@ -418,9 +418,12 @@
 
       <h3>Payment Method</h3>
       <div class="payment-methods">
-        <label><input type="radio" name="payment" checked> Cash on Delivery</label>
-        <label><input type="radio" name="payment"> Credit/Debit Card</label>
-        <label><input type="radio" name="payment"> PayPal</label>
+      <label>
+  <input type="radio"checked  name="payment">
+  <img src="/Banners/KHQR_Logo.webp" alt="KHQR Logo" style="width:50px; vertical-align:middle; margin-right:5px;">
+  Pay with KHQR 
+</label>
+
       </div>
     </form>
   </div>
