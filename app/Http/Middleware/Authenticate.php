@@ -12,6 +12,7 @@ class Authenticate
    
    public function handle(Request $request, Closure $next): Response
     {
+
         // ✅ Check if user is not authenticated
         if (!Auth::check()) {
             return redirect()->route('auth'); // redirect to login if not logged in
@@ -19,5 +20,6 @@ class Authenticate
 
         // ✅ User is authenticated, proceed to next
         return $next($request);
+
     }
 }

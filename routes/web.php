@@ -21,8 +21,6 @@ Route::get('/about', fn() => view('Frontend.about'));
 Route::get('/login', fn() => view('Frontend.Login'));
 Route::get('/contact', fn() => view('Frontend.contact'));
 
-Route::get('/login/auth',[AuthController::class, 'auth'])->name('auth');
-Route::post('/AdminLogin', [AuthController::class, 'adminlogin'])->name('login');
 
 
 Route::get('/FormRegister',[CustomerController::class, 'rigister'])->name('register');
@@ -79,4 +77,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('report')->group(function () {
         Route::get('/list', [ReportController::class, 'list'])->name('report.list');
     });
+
 });
