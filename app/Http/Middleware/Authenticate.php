@@ -12,10 +12,14 @@ class Authenticate
    
    public function handle(Request $request, Closure $next): Response
     {
-        
-        if (Auth::check()) {
-            return $next($request);
+
+        // ✅ Check if user is not authenticated
+        if (!Auth::check()) {
+            return redirect()->route('auth'); // redirect to login if not logged in
         }
-        return redirect()->route('pary'); 
+
+        // ✅ User is authenticated, proceed to next
+        return $next($request);
+
     }
 }

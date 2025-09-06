@@ -669,6 +669,10 @@
             <i class="fas fa-hamburger"></i>
             <span>Food</span>
         </a>
+           <a href="#" class="menu-item">
+       <i class="fas fa-user-shield"></i>
+            <span>Banner</span>
+        </a>
         <a href="{{ route('order.list') }}" class="menu-item">
             <i class="fas fa-clipboard-list"></i>
             <span>Orders</span>
